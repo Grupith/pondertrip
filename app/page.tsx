@@ -5,7 +5,7 @@ export default function Home() {
   const { darkMode, toggleDarkMode } = useTheme()
   return (
     <main className={`${darkMode ? "dark" : ""} `}>
-      <div className="pt-2 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-stone-300 dark:bg-slate-900 dark:text-white">
+      <div className="pt-2 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-neutral-100 dark:bg-slate-900 dark:text-white">
         <nav className="px-2 mt-2 flex justify-between sm:justify-around items-center">
           <div className="flex items-center space-x-1 cursor-pointer ">
             <svg
@@ -42,7 +42,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <button className="text-md font-medium rounded-md shadow-md bg-blue-700 px-4 py-1 hover:scale-105 transition-all text-white">
+            <button className="text-md font-medium rounded-md shadow-md bg-blue-600 dark:bg-blue-700 px-4 py-1 hover:scale-105 transition-all text-white">
               Try now!
             </button>
           </div>
@@ -51,13 +51,13 @@ export default function Home() {
         <h3 className="text-center text-4xl mt-20 font-medium dark:text-white">
           What we do, is in our name
         </h3>
-        <div className="flex justify-evenly mt-16 flex-wrap space-y-8 sm:space-y-0 dark:text-gray-300">
-          <div className="w-80 p-6 rounded-lg shadow-lg bg-stone-400 dark:bg-slate-800">
+        <div className="flex justify-evenly mt-16 flex-wrap space-y-8 sm:space-y-0 dark:text-slate-200">
+          <div className="w-80 p-6 rounded-lg shadow-lg bg-white dark:bg-slate-800">
             <h2 className="text-3xl font-extrabold mb-2">Ponder</h2>
             <p className="text-lg italic">noun</p>
             <p className="text-lg">To think deeply about something.</p>
           </div>
-          <div className="w-80 p-6 rounded-lg shadow-lg bg-stone-400 dark:bg-slate-800">
+          <div className="w-80 p-6 rounded-lg shadow-lg bg-white dark:bg-slate-800">
             <h2 className="text-3xl font-extrabold mb-2">Trip</h2>
             <p className="text-lg italic">noun</p>
             <p className="text-lg">
@@ -69,9 +69,9 @@ export default function Home() {
         <h3 className="text-center text-4xl mt-20 font-medium">
           Organize all your trips with ease
         </h3>
-        <p className="text-center mt-20">"Screenshots of app"</p>
+        <p className="text-center mt-20">Screenshots of app</p>
       </div>
-      <footer className="font-semibold text-sm text-center py-2 bg-stone-300 shadow-md dark:bg-slate-900 dark:text-gray-300">
+      <footer className="font-semibold text-sm text-center py-2 bg-neutral-100 shadow-md dark:bg-slate-900 dark:text-gray-300">
         <span>© 2024 Pondertrip. All rights reserved.</span>
       </footer>
     </main>
