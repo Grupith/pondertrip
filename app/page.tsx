@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 import { useTheme } from "./ThemeContext"
 
 export default function Home() {
@@ -42,9 +43,11 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <button className="text-md font-medium rounded-md shadow-md bg-blue-600 dark:bg-blue-700 px-4 py-1 hover:scale-105 transition-all text-white">
-              Try now!
-            </button>
+            <Link href="/register">
+              <button className="text-md font-medium rounded-md shadow-md bg-blue-600 dark:bg-blue-700 px-4 py-1 hover:scale-105 transition-all text-white">
+                Try now!
+              </button>
+            </Link>
           </div>
         </nav>
         {/* Hero Section */}
