@@ -1,13 +1,16 @@
+"use client"
 import Link from "next/link"
 import React from "react"
+import { useTheme } from "../ThemeContext"
 
 export default function Register() {
+  const { darkMode } = useTheme()
   return (
-    <div>
-      <section className="bg-neutral-100 dark:bg-slate-900 min-h-screen">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div className={`${darkMode ? "dark" : ""} `}>
+      <section className="bg-neutral-100 min-h-screen">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 dark:bg-slate-900">
           <Link href="/">
-            <div className="flex items-center space-x-1 cursor-pointer mb-10">
+            <div className="flex items-center space-x-1 cursor-pointer mb-10 text-black dark:text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
