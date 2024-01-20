@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
-import { Cormorant } from "next/font/google"
+import { Nunito } from "next/font/google"
 import "./globals.css"
 
-const cormorant = Cormorant({ subsets: ["latin"] })
+const nunito = Nunito({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "pondertrip",
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cormorant.className}>
+      <body className={nunito.className}>
         {children}
         <footer className="font-semibold text-md text-center">
           <span>© 2024 Pondertrip. All rights reserved.</span>
