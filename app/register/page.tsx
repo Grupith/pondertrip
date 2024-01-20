@@ -1,10 +1,38 @@
 "use client"
 import Link from "next/link"
-import React from "react"
+import React, { useState } from "react"
 import { useTheme } from "../ThemeContext"
+import { auth } from "../Firebase"
+import { useAuth } from "../FirebaseContext"
+import { useRouter } from "next/navigation"
 
 export default function Register() {
   const { darkMode } = useTheme()
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+
+  const { signUp } = useAuth()
+  const router = useRouter()
+
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (password !== confirmPassword) {
+      console.error("Passwords do not match")
+      return
+    }
+
+    try {
+      await signUp(email, password)
+      router.push("/dashboard")
+      console.log("User signed up successfully")
+    } catch (error: any) {
+      console.error("Error trying to register user", error.message)
+    }
+  }
+
   return (
     <div className={`${darkMode ? "dark" : ""} `}>
       <section className="bg-neutral-100 min-h-screen">
@@ -33,7 +61,7 @@ export default function Register() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Create an account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSignUp}>
                 <div>
                   <label
                     htmlFor="email"
@@ -48,6 +76,7 @@ export default function Register() {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -64,6 +93,7 @@ export default function Register() {
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div>
@@ -74,12 +104,13 @@ export default function Register() {
                     Confirm password
                   </label>
                   <input
-                    type="confirm-password"
+                    type="password"
                     name="confirm-password"
                     id="confirm-password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
                 <div className="flex items-start">
