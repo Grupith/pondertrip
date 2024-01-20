@@ -1,10 +1,29 @@
 "use client"
 import Link from "next/link"
-import React from "react"
+import React, { useState } from "react"
 import { useTheme } from "../ThemeContext"
+import { useAuth } from "../FirebaseContext"
+import { useRouter } from "next/navigation"
 
 export default function Login() {
   const { darkMode } = useTheme()
+  const { signIn } = useAuth()
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const router = useRouter()
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    try {
+      signIn(email, password)
+      router.push("/dashboard")
+      console.log("successfully signed in")
+    } catch (error: any) {
+      console.error("Error Logging in", error.message)
+    }
+  }
   return (
     <div className={`${darkMode ? "dark" : ""} `}>
       <section className="bg-neutral-100 dark:bg-slate-900">
@@ -33,7 +52,7 @@ export default function Login() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
                 <div>
                   <label
                     htmlFor="email"
@@ -48,6 +67,7 @@ export default function Login() {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -64,6 +84,7 @@ export default function Login() {
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
@@ -75,7 +96,6 @@ export default function Login() {
                         aria-describedby="remember"
                         type="checkbox"
                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        required
                       />
                     </div>
                     <div className="ml-3 text-sm">
