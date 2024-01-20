@@ -43,7 +43,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     })
 
     return () => unsubscribe()
-  }, [auth])
+  }, [])
 
   const handleAuthError = (error: any): void => {
     console.error("Firebase Authentication Error:", error.message)
