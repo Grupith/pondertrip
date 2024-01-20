@@ -1,13 +1,11 @@
 "use client"
 import React from "react"
 import { useTheme } from "../ThemeContext"
-import Sidebar from "../components/Sidebar"
 
 export default function Dashboard() {
   const { darkMode } = useTheme()
   return (
-    <div className="">
-      <Sidebar />
+    <div>
       <main className={`${darkMode ? "dark" : ""} `}>
         <div className="pt-2 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-gray-200 dark:bg-slate-900 dark:text-white">
           {/* Dashboard View */}
