@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Nunito } from "next/font/google"
 import "./globals.css"
+import { ThemeProvider, useTheme } from "./ThemeContext"
 
 const nunito = Nunito({ subsets: ["latin"] })
 
@@ -17,10 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        {children}
-        <footer className="font-semibold text-md text-center">
-          <span>© 2024 Pondertrip. All rights reserved.</span>
-        </footer>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )
