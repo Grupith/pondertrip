@@ -26,8 +26,8 @@ export default function Login() {
   }
   return (
     <div className={`${darkMode ? "dark" : ""} `}>
-      <section className="bg-neutral-100 dark:bg-slate-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <section className="bg-neutral-100 dark:bg-slate-900 min-h-screen">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 dark:bg-slate-900">
           <Link href="/">
             <div className="flex items-center space-x-1 cursor-pointer mb-10 text-black dark:text-white">
               <svg

@@ -1,38 +1,128 @@
 "use client"
 import React from "react"
 import { useTheme } from "../ThemeContext"
-import { useAuth } from "../FirebaseContext"
-import { useRouter } from "next/navigation"
 import Sidebar from "../components/Sidebar"
 
 export default function Dashboard() {
   const { darkMode } = useTheme()
-  const { user, signOut } = useAuth()
-  const router = useRouter()
   return (
-    <div className="flex">
+    <div className="">
       <Sidebar />
       <main className={`${darkMode ? "dark" : ""} `}>
-        <div className="pt-2 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-neutral-100 dark:bg-slate-900 dark:text-white">
-          <div>
-            <h1 className="text-3xl font-bold">Dashboard</h1>
-            <p className="text-xl mt-4 font-bold">
-              Email: {user && user.email}
-            </p>
-            <button
-              onClick={() => {
-                signOut()
-                router.push("/")
-              }}
-              className="mt-4"
-            >
-              Sign out
-            </button>
+        <div className="pt-2 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-gray-200 dark:bg-slate-900 dark:text-white">
+          {/* Dashboard View */}
+          <div className="p-4 sm:ml-64">
+            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+              <div className="grid grid-cols-3 gap-4 mb-4">
+                {/* Repeat this block as needed */}
+                <div className="flex items-center justify-center h-24 rounded bg-slate-50 dark:bg-gray-800">
+                  <p className="text-2xl text-gray-400 dark:text-gray-500">
+                    <svg
+                      className="w-3.5 h-3.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 18 18"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 1v16M1 9h16"
+                      />
+                    </svg>
+                  </p>
+                </div>
+                {/* End of repeatable block */}
+              </div>
+              <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
+                  <svg
+                    className="w-3.5 h-3.5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 18 18"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 1v16M1 9h16"
+                    />
+                  </svg>
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                {/* Repeat this block as needed */}
+                <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+                  <p className="text-2xl text-gray-400 dark:text-gray-500">
+                    <svg
+                      className="w-3.5 h-3.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 18 18"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 1v16M1 9h16"
+                      />
+                    </svg>
+                  </p>
+                </div>
+                {/* End of repeatable block */}
+              </div>
+              <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
+                  <svg
+                    className="w-3.5 h-3.5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 18 18"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 1v16M1 9h16"
+                    />
+                  </svg>
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {/* Repeat this block as needed */}
+                <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+                  <p className="text-2xl text-gray-400 dark:text-gray-500">
+                    <svg
+                      className="w-3.5 h-3.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 18 18"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 1v16M1 9h16"
+                      />
+                    </svg>
+                  </p>
+                </div>
+                {/* End of repeatable block */}
+              </div>
+            </div>
           </div>
         </div>
-        <footer className="font-semibold text-sm text-center py-2 bg-neutral-100 shadow-md dark:bg-slate-900 dark:text-gray-300">
-          <span>© 2024 Pondertrip. All rights reserved.</span>
-        </footer>
       </main>
     </div>
   )

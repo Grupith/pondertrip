@@ -72,7 +72,11 @@ export default function Home() {
         <h3 className="text-center text-4xl mt-20 font-medium">
           Organize all your trips with ease
         </h3>
-        <p className="text-center mt-20">Screenshots of app</p>
+        <div className="flex justify-center">
+          <Link href="/dashboard" className="text-center mt-20">
+            Navigate to Dashboard
+          </Link>
+        </div>
       </div>
       <footer className="font-semibold text-sm text-center py-2 bg-neutral-100 shadow-md dark:bg-slate-900 dark:text-gray-300">
         <span>© 2024 Pondertrip. All rights reserved.</span>
