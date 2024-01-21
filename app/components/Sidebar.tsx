@@ -91,7 +91,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
                     </svg>
                   </button>
                 )}
-                <span className="text-2xl font-medium text-gray-700">
+                <span className="text-2xl font-medium text-gray-700 dark:text-gray-200">
                   pondertrip
                 </span>
               </div>

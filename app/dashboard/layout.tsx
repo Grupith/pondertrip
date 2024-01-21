@@ -18,6 +18,7 @@ export default function DashboardLayout({
   return (
     <div className={`${darkMode ? "dark" : ""} fade-in `}>
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      {children}
     </div>
   )
 }
