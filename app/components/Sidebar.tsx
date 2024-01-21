@@ -15,14 +15,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const router = useRouter()
   const { darkMode, toggleDarkMode } = useTheme()
   return (
-    <div className={`${darkMode ? "dark" : ""} fade-in`}>
+    <div
+      className={`${
+        darkMode ? "dark" : ""
+      } fade-in bg-gray-200 dark:bg-slate-900`}
+    >
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         onClick={toggleSidebar}
         type="button"
-        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="fixed p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-600"
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -44,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
         id="default-sidebar"
         className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
           isSidebarOpen ? "" : "-translate-x-full"
-        } sm:translate-x-0`}
+        } sm:translate-x-0 fade-in-0 animate-in animate-out duration-500`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 flex flex-col justify-between overflow-y-auto bg-gray-50 dark:bg-gray-800">
@@ -97,7 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
               </div>
             </section>
             <ul className="space-y-2 font-medium">
-              <li>
+              <li onClick={toggleSidebar}>
                 <Link
                   href="/dashboard/create"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
@@ -118,7 +122,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
                   </span>
                 </Link>
               </li>
-              <li>
+              <li onClick={toggleSidebar}>
                 <Link
                   href="/dashboard"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
@@ -158,7 +162,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
                   </span>
                 </a>
               </li>
-              <li>
+              <li onClick={toggleSidebar}>
                 <Link
                   href="/dashboard/settings"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
@@ -226,7 +230,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
                   <span className="flex-1 ms-3 whitespace-nowrap line-through">
                     PonderPro
                   </span>
-                  <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-purple-300 rounded-full dark:bg-gray-700 dark:text-gray-300">
+                  <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-black bg-green-500 rounded-full dark:bg-green-700 dark:text-gray-300">
                     New
                   </span>
                 </a>

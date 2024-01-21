@@ -8,8 +8,8 @@ export default function Create() {
     <div>
       <main className={`${darkMode ? "dark" : ""} `}>
         <div className="pt-2 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-gray-200 dark:bg-slate-900 dark:text-white">
-          {/* Settings View */}
-          <h1 className="ml-64">Create Trip</h1>
+          {/* Create Trip */}
+          <h1 className="ml-16">Create Trip</h1>
         </div>
       </main>
     </div>

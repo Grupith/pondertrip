@@ -13,10 +13,9 @@ export default function DashboardLayout({
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
-    console.log("toggleSidebar Clicked", isSidebarOpen)
   }
   return (
-    <div className={`${darkMode ? "dark" : ""} fade-in `}>
+    <div className={`${darkMode ? "dark" : ""} fade-in animate-in animate-out`}>
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       {children}
     </div>
