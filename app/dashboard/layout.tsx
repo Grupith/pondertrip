@@ -1,3 +1,6 @@
+"use client"
+import { useState } from "react"
+import { useTheme } from "../ThemeContext"
 import Sidebar from "../components/Sidebar"
 
 export default function DashboardLayout({
@@ -5,11 +8,16 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
+  const { darkMode } = useTheme()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev)
+    console.log("toggleSidebar Clicked", isSidebarOpen)
+  }
   return (
-    <section>
-      {/* Include shared UI here e.g. a header or sidebar */}
-      <Sidebar />
-      {children}
-    </section>
+    <div className={`${darkMode ? "dark" : ""} fade-in `}>
+      <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+    </div>
   )
 }

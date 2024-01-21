@@ -5,16 +5,22 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useTheme } from "../ThemeContext"
 
-export default function Sidebar() {
+interface SidebarProps {
+  isSidebarOpen: boolean
+  toggleSidebar: () => void
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const { signOut, user } = useAuth()
   const router = useRouter()
   const { darkMode, toggleDarkMode } = useTheme()
   return (
-    <div className={`${darkMode ? "dark" : ""} fade-in-0 `}>
+    <div className={`${darkMode ? "dark" : ""} fade-in`}>
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
+        onClick={toggleSidebar}
         type="button"
         className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
@@ -33,32 +39,63 @@ export default function Sidebar() {
           ></path>
         </svg>
       </button>
+      {/* Sidebar */}
       <aside
         id="default-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          isSidebarOpen ? "" : "-translate-x-full"
+        } sm:translate-x-0`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 flex flex-col justify-between overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <div>
-            <Link href="/">
+            <section>
               <div className="flex items-center space-x-1 cursor-pointer mb-4 text-black dark:text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                  />
-                </svg>
-                <span className="text-2xl font-medium">pondertrip</span>
+                {!isSidebarOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                    />
+                  </svg>
+                ) : (
+                  <button
+                    data-drawer-target="default-sidebar"
+                    data-drawer-toggle="default-sidebar"
+                    aria-controls="default-sidebar"
+                    onClick={toggleSidebar}
+                    type="button"
+                    className="inline-flex items-center p-1 ml-1 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                  >
+                    <span className="sr-only">Open sidebar</span>
+                    <svg
+                      className="w-6 h-6"
+                      aria-hidden="true"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clipRule="evenodd"
+                        fillRule="evenodd"
+                        d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                      ></path>
+                    </svg>
+                  </button>
+                )}
+                <span className="text-2xl font-medium text-gray-700">
+                  pondertrip
+                </span>
               </div>
-            </Link>
+            </section>
             <ul className="space-y-2 font-medium">
               <li>
                 <Link
@@ -223,3 +260,4 @@ export default function Sidebar() {
     </div>
   )
 }
+export default Sidebar
