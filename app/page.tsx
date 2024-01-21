@@ -14,7 +14,7 @@ export default function Home() {
     if (user) {
       router.push("/dashboard")
     }
-  }, [user])
+  }, [user, router])
   return (
     <main className={`${darkMode ? "dark" : ""} `}>
       <div className="pt-2 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-neutral-100 dark:bg-slate-900 dark:text-white">
@@ -56,7 +56,7 @@ export default function Home() {
             </div>
             <Link href="/register">
               <button className="text-md font-medium rounded-md shadow-md bg-blue-600 dark:bg-blue-700 px-4 py-1 hover:scale-105 transition-all text-white">
-                Try now!
+                Try Beta 1.0
               </button>
             </Link>
           </div>
@@ -83,11 +83,7 @@ export default function Home() {
         <h3 className="text-center text-4xl mt-20 font-medium">
           Organize all your trips with ease
         </h3>
-        <div className="flex justify-center">
-          <Link href="/dashboard" className="text-center mt-20">
-            Navigate to Dashboard
-          </Link>
-        </div>
+        <div className="flex justify-center mt-10">Screenshots of app here</div>
       </div>
       <footer className="font-semibold text-sm text-center py-2 bg-neutral-100 shadow-md dark:bg-slate-900 dark:text-gray-300">
         <span>© 2024 Pondertrip. All rights reserved.</span>

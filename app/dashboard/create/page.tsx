@@ -14,7 +14,7 @@ export default function Create() {
               <div className="grid grid-cols-3 gap-4 mb-4">
                 {/* Repeat this block as needed */}
                 <div className="flex items-center justify-center h-20 w-64 sm:w-fit sm:px-16 rounded-2xl bg-slate-50 dark:bg-gray-800 shadow-sm">
-                  <p className="text-2xl font-bold text-black dark:text-gray-300 text-center truncate">
+                  <p className="text-2xl font-bold text-black dark:text-gray-300 text-center truncate ">
                     Create a Trip
                   </p>
                 </div>
