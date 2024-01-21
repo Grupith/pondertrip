@@ -1,9 +1,20 @@
 "use client"
 import Link from "next/link"
 import { useTheme } from "./ThemeContext"
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
+import { useAuth } from "./FirebaseContext"
 
 export default function Home() {
   const { darkMode, toggleDarkMode } = useTheme()
+  const { user } = useAuth()
+  const router = useRouter()
+  //If user is logged in already, skip landing page and navigate to dashboard
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard")
+    }
+  }, [user])
   return (
     <main className={`${darkMode ? "dark" : ""} `}>
       <div className="pt-2 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-neutral-100 dark:bg-slate-900 dark:text-white">
