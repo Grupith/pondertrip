@@ -12,7 +12,7 @@ export default function Dashboard() {
           <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-gray-200 dark:bg-slate-900 dark:text-white">
             {/* Dashboard View */}
             <div className="p-4 sm:ml-64">
-              <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+              <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-slate-900">
                 <div className="grid grid-cols-3 gap-4 mb-4">
                   {/* Repeat this block as needed */}
                   <div className="flex items-center justify-center h-20 w-64 sm:w-fit sm:px-16 rounded-2xl bg-slate-50 dark:bg-gray-800 shadow-sm">

@@ -1,113 +1,156 @@
 "use client"
 import { useTheme } from "@/app/ThemeContext"
-import React from "react"
+import React, { ChangeEvent, useState } from "react"
 
-export default function Create() {
+interface CreateFormState {
+  title: string
+  location: string
+  image: string
+  description: string
+  date: string
+  people: string
+}
+
+const Create: React.FC = () => {
   const { darkMode } = useTheme()
+  const [formData, setFormData] = useState<CreateFormState>({
+    title: "",
+    location: "",
+    image: "",
+    description: "",
+    date: "",
+    people: "",
+  })
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log(formData)
+  }
   return (
-    <div>
+    <>
       <main className={`${darkMode ? "dark" : ""} `}>
         <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-gray-200 dark:bg-slate-900 dark:text-white">
-          {/* Dashboard View */}
-          <div className="p-4 sm:ml-64">
-            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+          {/* Create Trip Form */}
+          <form onSubmit={handleSubmit} className="p-4 sm:ml-64">
+            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-slate-900">
               <div className="grid grid-cols-3 gap-4 mb-4">
-                {/* Repeat this block as needed */}
                 <div className="flex items-center justify-center h-20 w-64 sm:w-fit sm:px-16 rounded-2xl bg-slate-50 dark:bg-gray-800 shadow-sm">
                   <p className="text-2xl font-bold text-black dark:text-gray-300 text-center truncate ">
                     Create a Trip
                   </p>
                 </div>
-                {/* End of repeatable block */}
               </div>
-              <div className="flex items-center justify-center h-48 mb-4 rounded-2xl bg-gray-50 dark:bg-gray-800 shadow-sm">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
+              <div className="flex flex-col p-4 h-fit mb-4 rounded-2xl bg-gray-50 dark:bg-gray-800 shadow-sm">
+                <h2 className="text-lg py-4 font-semibold text-gray-600 dark:text-gray-300">
+                  Give us some info on your trip. You can always edit these
+                  after.
+                </h2>
+                <div className="mb-4">
+                  <label
+                    htmlFor="title"
+                    className="block text-md font-semibold text-gray-600 dark:text-gray-300"
                   >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                {/* Repeat this block as needed */}
-                <div className="flex items-center justify-center rounded-2xl bg-gray-50 h-28 dark:bg-gray-800 shadow-sm">
-                  <p className="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg
-                      className="w-3.5 h-3.5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 18"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 1v16M1 9h16"
-                      />
-                    </svg>
-                  </p>
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    className="mt-1 p-2 w-full border rounded-md dark:bg-slate-600 dark:border-slate-600"
+                    onChange={handleChange}
+                    value={formData.title}
+                  />
                 </div>
-                {/* End of repeatable block */}
-              </div>
-              <div className="flex items-center justify-center h-48 mb-4 rounded-2xl bg-gray-50 dark:bg-gray-800 shadow-sm">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
+                <div className="mb-4">
+                  <label
+                    htmlFor="location"
+                    className="block text-md font-semibold text-gray-600 dark:text-gray-300"
                   >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    name="location"
+                    id="location"
+                    className="mt-1 p-2 w-full border rounded-md dark:bg-slate-600 dark:border-slate-600"
+                    onChange={handleChange}
+                    value={formData.location}
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="description"
+                    className="block text-md font-semibold text-gray-600 dark:text-gray-300"
+                  >
+                    Description
+                  </label>
+                  <input
+                    type="text"
+                    name="description"
+                    id="description"
+                    className="mt-1 p-2 w-full border rounded-md dark:bg-slate-600 dark:border-slate-600 "
+                    onChange={handleChange}
+                    value={formData.description}
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="date"
+                    className="block text-md font-semibold text-gray-600 dark:text-gray-300"
+                  >
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    name="date"
+                    id="date"
+                    className="mt-1 p-2 w-full border rounded-md dark:bg-slate-600 dark:border-slate-600 "
+                    onChange={handleChange}
+                    value={formData.date}
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="image"
+                    className="block text-md font-semibold text-gray-600 dark:text-gray-300"
+                  >
+                    Image
+                  </label>
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    className="mt-1 p-2 w-full border rounded-md dark:bg-slate-600 dark:border-slate-600 "
+                    onChange={handleChange}
+                    value={formData.image}
+                  />
+                </div>
               </div>
+              <div className="grid grid-cols-2 gap-4 mb-4"></div>
               <div className="grid grid-cols-2 gap-4">
-                {/* Repeat this block as needed */}
                 <div className="flex items-center justify-center rounded-2xl bg-gray-50 h-28 dark:bg-gray-800 shadow-sm">
-                  <p className="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg
-                      className="w-3.5 h-3.5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 18"
+                  <div>
+                    <button
+                      type="submit"
+                      className="bg-blue-500 text-white px-9 py-2 rounded-lg shadow-sm hover:scale-105 transition-all"
                     >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 1v16M1 9h16"
-                      />
-                    </svg>
-                  </p>
+                      Submit
+                    </button>
+                  </div>
                 </div>
-                {/* End of repeatable block */}
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </main>
-    </div>
+    </>
   )
 }
+export default Create
