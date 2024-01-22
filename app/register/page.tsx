@@ -12,6 +12,7 @@ export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [error, setError] = useState("")
 
   const { signUp } = useAuth()
   const router = useRouter()
@@ -21,6 +22,7 @@ export default function Register() {
 
     if (password !== confirmPassword) {
       console.error("Passwords do not match")
+      setError("Passwords do not match!")
       return
     }
 
@@ -138,6 +140,7 @@ export default function Register() {
                     </label>
                   </div>
                 </div>
+                <p className="text-red-500 font-medium">{error && error}</p>
                 <button
                   type="submit"
                   className="w-full text-white bg-gradient-to-br from-blue-500 to-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

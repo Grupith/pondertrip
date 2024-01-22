@@ -7,7 +7,8 @@ interface CreateFormState {
   location: string
   image: string
   description: string
-  date: string
+  startDate: string
+  endDate: string
   people: string
 }
 
@@ -18,7 +19,8 @@ const Create: React.FC = () => {
     location: "",
     image: "",
     description: "",
-    date: "",
+    startDate: "",
+    endDate: "",
     people: "",
   })
 
@@ -100,22 +102,40 @@ const Create: React.FC = () => {
                     value={formData.description}
                   />
                 </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="date"
-                    className="block text-md font-semibold text-gray-600 dark:text-gray-300"
-                  >
-                    Date
-                  </label>
-                  <input
-                    type="date"
-                    name="date"
-                    id="date"
-                    className="mt-1 p-2 w-full border rounded-md dark:bg-slate-600 dark:border-slate-600 "
-                    onChange={handleChange}
-                    value={formData.date}
-                  />
-                </div>
+                <section className="flex justify-start space-x-10">
+                  <div className="mb-4">
+                    <label
+                      htmlFor="startDate"
+                      className="block text-md font-semibold text-gray-600 dark:text-gray-300"
+                    >
+                      Start Date
+                    </label>
+                    <input
+                      type="date"
+                      name="startDate"
+                      id="startDate"
+                      className="mt-1 p-2 w-full border rounded-md dark:bg-slate-600 dark:border-slate-600 "
+                      onChange={handleChange}
+                      value={formData.startDate}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="endDate"
+                      className="block text-md font-semibold text-gray-600 dark:text-gray-300"
+                    >
+                      End Date
+                    </label>
+                    <input
+                      type="date"
+                      name="endDate"
+                      id="endDate"
+                      className="mt-1 p-2 w-full border rounded-md dark:bg-slate-600 dark:border-slate-600 "
+                      onChange={handleChange}
+                      value={formData.endDate}
+                    />
+                  </div>
+                </section>
                 <div className="mb-4">
                   <label
                     htmlFor="image"

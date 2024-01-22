@@ -11,17 +11,28 @@ export default function Login() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
   const router = useRouter()
+  const { user } = useAuth()
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
 
     try {
       signIn(email, password)
-      router.push("/dashboard")
-      console.log("successfully signed in")
     } catch (error: any) {
       console.error("Error Logging in", error.message)
+
+      if (error.code === "auth/invalid-credential") {
+        setError("Invalid email or password")
+      } else {
+        setError("An error occurred while logging in")
+      }
+    } finally {
+      if (user) {
+        router.push("/dashboard")
+        console.log("successfully signed in")
+      }
     }
   }
   return (
@@ -114,11 +125,12 @@ export default function Login() {
                     Forgot password?
                   </a>
                 </div>
+                <p className="text-red-500 font-medium">{error && error}</p>
                 <button
                   type="submit"
                   className="w-full text-white bg-gradient-to-br from-blue-500 to-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Create an account
+                  Login
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don&apos;t have an account yet?{" "}
