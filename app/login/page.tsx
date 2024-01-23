@@ -11,9 +11,8 @@ export default function Login() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
   const router = useRouter()
-  const { user } = useAuth()
+  const { user, error } = useAuth()
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
@@ -22,12 +21,6 @@ export default function Login() {
       signIn(email, password)
     } catch (error: any) {
       console.error("Error Logging in", error.message)
-
-      if (error.code === "auth/invalid-credential") {
-        setError("Invalid email or password")
-      } else {
-        setError("An error occurred while logging in")
-      }
     } finally {
       if (user) {
         router.push("/dashboard")

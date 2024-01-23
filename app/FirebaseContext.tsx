@@ -18,6 +18,8 @@ interface AuthContextProps {
   signIn: (email: string, password: string) => Promise<void>
   signOut: () => Promise<void>
   signUp: (email: string, password: string) => Promise<void>
+  error: string | null
+  setError: (error: string | null) => void
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined)
@@ -36,6 +38,7 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -53,8 +56,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signIn = async (email: string, password: string): Promise<void> => {
     try {
       await signInWithEmailAndPassword(auth, email, password)
-    } catch (error) {
-      handleAuthError(error)
+    } catch (error: any) {
+      // handleAuthError(error)
+      setError(error.message)
     }
   }
 
@@ -80,6 +84,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     signIn,
     signOut,
     signUp,
+    error,
+    setError,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
