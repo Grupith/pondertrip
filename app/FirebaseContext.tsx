@@ -11,7 +11,9 @@ import {
   createUserWithEmailAndPassword,
   User,
 } from "firebase/auth"
-import { auth } from "./Firebase"
+import { auth, db } from "./Firebase"
+import { Timestamp, doc, getDoc, setDoc } from "firebase/firestore"
+import { v4 as uuidv4 } from "uuid"
 
 interface AuthContextProps {
   user: User | null
@@ -42,7 +44,31 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user)
+      if (user) {
+        setUser(user)
+        console.log("...onAuthStateChanged", user)
+        // Check if user exists in database
+        const checkUserExists = async () => {
+          const userDocRef = doc(db, "users", user.uid)
+          const userDocSnapshot = await getDoc(userDocRef)
+
+          // if user does not exist, create one in database
+          if (!userDocSnapshot.exists()) {
+            await setDoc(userDocRef, {
+              email: user.email,
+              displayName: user.displayName,
+              userId: uuidv4(),
+              created_at: Timestamp.now(),
+            })
+            console.log("created user in database!")
+          } else {
+            console.log("user already exists in database")
+          }
+        }
+        checkUserExists()
+      } else {
+        console.error("user is null")
+      }
     })
 
     return () => unsubscribe()
@@ -77,6 +103,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (error) {
       handleAuthError(error)
     }
+    console.log("signUp promise complete")
   }
 
   const value: AuthContextProps = {

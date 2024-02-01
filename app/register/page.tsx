@@ -1,14 +1,16 @@
 "use client"
 import Link from "next/link"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useTheme } from "../ThemeContext"
-import { auth } from "../Firebase"
+import { db } from "../Firebase"
 import { useAuth } from "../FirebaseContext"
 import { useRouter } from "next/navigation"
+import { Timestamp, doc, setDoc } from "firebase/firestore"
 
 export default function Register() {
   const { darkMode } = useTheme()
 
+  const [displayName, setDisplayName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -19,17 +21,17 @@ export default function Register() {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
-
+    // Validate passwords
     if (password !== confirmPassword) {
       console.error("Passwords do not match")
       setError("Passwords do not match!")
       return
     }
-
+    // Create user account
     try {
       await signUp(email, password)
+      // Redirect to dashboard
       router.push("/dashboard")
-      console.log("User signed up successfully")
     } catch (error: any) {
       console.error("Error trying to register user", error.message)
     }
@@ -64,6 +66,23 @@ export default function Register() {
                 Create an account
               </h1>
               <form className="space-y-4 md:space-y-6" onSubmit={handleSignUp}>
+                <div>
+                  <label
+                    htmlFor="displayName"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Display Name
+                  </label>
+                  <input
+                    type="text"
+                    name="displayName"
+                    id="displayName"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="example: Chris"
+                    required
+                    onChange={(e) => setDisplayName(e.target.value)}
+                  />
+                </div>
                 <div>
                   <label
                     htmlFor="email"
