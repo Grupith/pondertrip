@@ -1,12 +1,11 @@
 "use client"
 import Link from "next/link"
 import React, { useState } from "react"
-import { useTheme } from "../ThemeContext"
+
 import { useAuth } from "../FirebaseContext"
 import { useRouter } from "next/navigation"
 
 export default function Login() {
-  const { darkMode } = useTheme()
   const { signIn } = useAuth()
 
   const [email, setEmail] = useState("")
@@ -29,7 +28,7 @@ export default function Login() {
     }
   }
   return (
-    <div className={`${darkMode ? "dark" : ""} `}>
+    <div>
       <section className="bg-neutral-100 dark:bg-slate-900 min-h-screen">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 dark:bg-slate-900">
           <Link href="/">

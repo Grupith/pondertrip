@@ -6,8 +6,6 @@ import { useAuth } from "../FirebaseContext"
 import { useRouter } from "next/navigation"
 
 export default function Register() {
-  const { darkMode } = useTheme()
-
   const [displayName, setDisplayName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -35,7 +33,7 @@ export default function Register() {
   }
 
   return (
-    <div className={`${darkMode ? "dark" : ""} `}>
+    <div>
       <section className="bg-neutral-100 min-h-screen dark:bg-slate-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 dark:bg-slate-900">
           <Link href="/">

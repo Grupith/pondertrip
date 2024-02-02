@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { Nunito } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "./ThemeContext"
 import { AuthProvider } from "./FirebaseContext"
+import Provider from "./ThemeContext"
 
 const nunito = Nunito({ subsets: ["latin"] })
 
@@ -17,13 +17,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={nunito.className}>
         <AuthProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <Provider>{children}</Provider>
         </AuthProvider>
       </body>
     </html>

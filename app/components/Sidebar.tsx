@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useAuth } from "../FirebaseContext"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useTheme } from "../ThemeContext"
+import ThemeSwitch from "./ThemeSwitch"
 
 interface SidebarProps {
   isSidebarOpen: boolean
@@ -13,10 +13,9 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const { signOut, user } = useAuth()
   const router = useRouter()
-  const { darkMode, toggleDarkMode } = useTheme()
 
   return (
-    <div className={`${darkMode ? "dark" : ""} bg-gray-200 dark:bg-slate-900`}>
+    <div className={`bg-gray-200 dark:bg-slate-900`}>
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
@@ -201,25 +200,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
             <p className="dark:text-white text-sm">
               Signed in as {user && user.email}
             </p>
-            <div
-              className={`cursor-pointer dark:text-white`}
-              onClick={toggleDarkMode}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                />
-              </svg>
-            </div>
+            <ThemeSwitch />
           </div>
         </div>
       </aside>

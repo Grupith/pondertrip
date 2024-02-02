@@ -1,14 +1,12 @@
 "use client"
 import { useAuth } from "@/app/FirebaseContext"
-import { useTheme } from "@/app/ThemeContext"
 import React from "react"
 
 export default function Settings() {
-  const { darkMode } = useTheme()
   const { user } = useAuth()
   return (
     <div>
-      <main className={`${darkMode ? "dark" : ""} `}>
+      <main>
         <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden bg-gray-200 dark:bg-slate-900 dark:text-white">
           {/* Settings View */}
           <div className="p-2 sm:p-4 sm:ml-64">

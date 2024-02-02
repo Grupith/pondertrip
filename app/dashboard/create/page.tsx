@@ -1,5 +1,5 @@
 "use client"
-import { useTheme } from "@/app/ThemeContext"
+
 import React, { ChangeEvent, useState } from "react"
 
 interface CreateFormState {
@@ -13,7 +13,6 @@ interface CreateFormState {
 }
 
 const Create: React.FC = () => {
-  const { darkMode } = useTheme()
   const [formData, setFormData] = useState<CreateFormState>({
     title: "",
     location: "",
@@ -37,7 +36,7 @@ const Create: React.FC = () => {
   }
   return (
     <>
-      <main className={`${darkMode ? "dark" : ""} `}>
+      <main>
         <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden bg-gray-200 dark:bg-slate-900 dark:text-white">
           {/* Create Trip Form */}
           <form onSubmit={handleSubmit} className="p-4 sm:ml-64">

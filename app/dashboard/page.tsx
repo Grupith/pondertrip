@@ -1,13 +1,11 @@
 "use client"
 import React from "react"
-import { useTheme } from "../ThemeContext"
 import PrivatePage from "../components/PrivatePage"
 
 export default function Dashboard() {
-  const { darkMode } = useTheme()
   return (
     <PrivatePage>
-      <main className={`${darkMode ? "dark" : ""} `}>
+      <main>
         <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden bg-gray-200 dark:bg-slate-900 dark:text-white">
           {/* Dashboard View */}
           <div className="p-4 sm:ml-64">
