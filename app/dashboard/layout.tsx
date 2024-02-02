@@ -15,7 +15,7 @@ export default function DashboardLayout({
     setIsSidebarOpen((prev) => !prev)
   }
   return (
-    <div className={`${darkMode ? "dark" : ""} fade-in animate-in animate-out`}>
+    <div className={`${darkMode ? "dark" : ""}`}>
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       {children}
     </div>

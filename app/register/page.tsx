@@ -1,11 +1,9 @@
 "use client"
 import Link from "next/link"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useTheme } from "../ThemeContext"
-import { db } from "../Firebase"
 import { useAuth } from "../FirebaseContext"
 import { useRouter } from "next/navigation"
-import { Timestamp, doc, setDoc } from "firebase/firestore"
 
 export default function Register() {
   const { darkMode } = useTheme()
@@ -30,7 +28,6 @@ export default function Register() {
     // Create user account
     try {
       await signUp(email, password)
-      // Redirect to dashboard
       router.push("/dashboard")
     } catch (error: any) {
       console.error("Error trying to register user", error.message)

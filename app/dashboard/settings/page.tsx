@@ -9,7 +9,7 @@ export default function Settings() {
   return (
     <div>
       <main className={`${darkMode ? "dark" : ""} `}>
-        <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden fade-in-0 animate-in animate-out duration-700 bg-gray-200 dark:bg-slate-900 dark:text-white">
+        <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden bg-gray-200 dark:bg-slate-900 dark:text-white">
           {/* Settings View */}
           <div className="p-2 sm:p-4 sm:ml-64">
             <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-slate-900">

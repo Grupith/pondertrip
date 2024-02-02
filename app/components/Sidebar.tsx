@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useState } from "react"
 import { useAuth } from "../FirebaseContext"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -14,12 +14,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const { signOut, user } = useAuth()
   const router = useRouter()
   const { darkMode, toggleDarkMode } = useTheme()
+
   return (
-    <div
-      className={`${
-        darkMode ? "dark" : ""
-      } fade-in bg-gray-200 dark:bg-slate-900`}
-    >
+    <div className={`${darkMode ? "dark" : ""} bg-gray-200 dark:bg-slate-900`}>
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"

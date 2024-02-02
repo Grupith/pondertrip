@@ -44,9 +44,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user)
       if (user) {
-        setUser(user)
-        console.log("...onAuthStateChanged", user)
+        console.log("onAuthStateChanged from...", user.email)
         // Check if user exists in database
         const checkUserExists = async () => {
           const userDocRef = doc(db, "users", user.uid)
@@ -61,8 +61,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               created_at: Timestamp.now(),
             })
             console.log("created user in database!")
+            // Update user displayName
           } else {
-            console.log("user already exists in database")
+            console.log("User already exists in database")
           }
         }
         checkUserExists()

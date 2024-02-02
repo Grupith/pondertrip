@@ -1,5 +1,11 @@
 "use client"
-import React, { createContext, useContext, useState, ReactNode } from "react"
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react"
 
 interface ThemeContextProps {
   darkMode: boolean
@@ -19,10 +25,25 @@ export const useTheme = () => {
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      // Initialize dark mode from localStorage if available, or default to false
+      const savedDarkMode = localStorage.getItem("darkMode")
+      return savedDarkMode ? JSON.parse(savedDarkMode) : false
+    } else {
+      return false // Default to false if localStorage is not available
+    }
+  })
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Save dark mode preference to localStorage
+      localStorage.setItem("darkMode", JSON.stringify(darkMode))
+    }
+  }, [darkMode])
 
   const toggleDarkMode = () => {
-    setDarkMode((prevDarkMode) => !prevDarkMode)
+    setDarkMode((prevDarkMode: boolean) => !prevDarkMode)
   }
 
   return (
