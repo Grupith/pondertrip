@@ -197,8 +197,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
             </ul>
           </div>
           <div className="flex justify-around items-center">
-            <p className="dark:text-white text-sm">
-              Signed in as {user && user.email}
+            <p className="dark:text-gray-300 text-sm">
+              Signed in as{" "}
+              <span className="text-blue-500 font-semibold">
+                {user && user.email}
+              </span>
             </p>
             <ThemeSwitch />
           </div>

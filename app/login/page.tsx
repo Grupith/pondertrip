@@ -11,20 +11,17 @@ export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
-  const { user, error } = useAuth()
+  const { error } = useAuth()
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
 
     try {
       signIn(email, password)
+      router.push("/dashboard")
+      console.log("successfully signed in")
     } catch (error: any) {
       console.error("Error Logging in", error.message)
-    } finally {
-      if (user) {
-        router.push("/dashboard")
-        console.log("successfully signed in")
-      }
     }
   }
   return (

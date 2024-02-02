@@ -12,14 +12,14 @@ export default function Dashboard() {
             <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-slate-900">
               <div className="grid grid-cols-3 gap-4 mb-4">
                 {/* Repeat this block as needed */}
-                <div className="flex items-center justify-center h-20 w-64 sm:w-fit sm:px-16 rounded-2xl bg-slate-50 dark:bg-gray-800 shadow-sm">
+                <div className="flex items-center justify-center h-20 w-64 sm:w-fit sm:px-16 rounded-lg bg-slate-50 dark:bg-gray-800 shadow-sm">
                   <p className="text-2xl font-bold text-black dark:text-gray-300 text-center truncate">
                     My Trips
                   </p>
                 </div>
                 {/* End of repeatable block */}
               </div>
-              <div className="flex items-center justify-center h-48 mb-4 rounded-2xl bg-gray-50 dark:bg-gray-800 shadow-sm">
+              <div className="flex items-center justify-center h-48 mb-4 rounded-lg bg-gray-50 dark:bg-gray-800 shadow-sm">
                 <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
                     className="w-3.5 h-3.5"
@@ -40,7 +40,7 @@ export default function Dashboard() {
               </div>
               <div className="grid grid-cols-2 gap-4 mb-4">
                 {/* Repeat this block as needed */}
-                <div className="flex items-center justify-center rounded-2xl bg-gray-50 h-28 dark:bg-gray-800 shadow-sm">
+                <div className="flex items-center justify-center rounded-lg bg-gray-50 h-28 dark:bg-gray-800 shadow-sm">
                   <p className="text-2xl text-gray-400 dark:text-gray-500">
                     <svg
                       className="w-3.5 h-3.5"
@@ -61,7 +61,7 @@ export default function Dashboard() {
                 </div>
                 {/* End of repeatable block */}
               </div>
-              <div className="flex items-center justify-center h-48 mb-4 rounded-2xl bg-gray-50 dark:bg-gray-800 shadow-sm">
+              <div className="flex items-center justify-center h-48 mb-4 rounded-lg bg-gray-50 dark:bg-gray-800 shadow-sm">
                 <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
                     className="w-3.5 h-3.5"
@@ -82,7 +82,7 @@ export default function Dashboard() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 {/* Repeat this block as needed */}
-                <div className="flex items-center justify-center rounded-2xl bg-gray-50 h-28 dark:bg-gray-800 shadow-sm">
+                <div className="flex items-center justify-center rounded-lg bg-gray-50 h-28 dark:bg-gray-800 shadow-sm">
                   <p className="text-2xl text-gray-400 dark:text-gray-500">
                     <svg
                       className="w-3.5 h-3.5"
