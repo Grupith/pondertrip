@@ -1,7 +1,6 @@
 "use client"
 import Link from "next/link"
 import React, { useState } from "react"
-import { useTheme } from "../ThemeContext"
 import { useAuth } from "../FirebaseContext"
 import { useRouter } from "next/navigation"
 
