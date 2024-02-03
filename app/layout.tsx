@@ -5,6 +5,7 @@ import { AuthProvider } from "./providers/FirebaseContext"
 import Provider from "./providers/ThemeContext"
 import { AlertProvider } from "./providers/AlertContext"
 import Alert from "./components/Alert"
+import { ModalProvider } from "./providers/ModalContext"
 
 const nunito = Nunito({ subsets: ["latin"] })
 
@@ -27,8 +28,10 @@ export default function RootLayout({
         <AuthProvider>
           <AlertProvider>
             <Provider>
-              <Alert />
-              {children}
+              <ModalProvider>
+                <Alert />
+                {children}
+              </ModalProvider>
             </Provider>
           </AlertProvider>
         </AuthProvider>

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import ThemeSwitch from "./ThemeSwitch"
 import { useAlert } from "../providers/AlertContext"
+import { useModal } from "../providers/ModalContext"
 
 interface SidebarProps {
   isSidebarOpen: boolean
@@ -15,6 +16,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const { signOut, user } = useAuth()
   const router = useRouter()
   const { showAlert } = useAlert()
+  const { openModal, closeModal } = useModal()
+
+  const handleSignOut = () => {
+    openModal(
+      "Confirm Signout",
+      "Are you sure you want to sign out?",
+      () => {
+        console.log("opened modal")
+        showAlert("User signed out successfully!", "info")
+        closeModal()
+      },
+      () => {
+        closeModal()
+      }
+    )
+  }
 
   return (
     <div className={`bg-gray-200 dark:bg-slate-900`}>
@@ -165,14 +182,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
                   </span>
                 </a>
               </li>
-              <li
-                onClick={() => {
-                  signOut()
-                  showAlert("Signed out sucessfully!", "info")
-                  router.push("/")
-                  console.log("signed out from dashboard")
-                }}
-              >
+              <li onClick={handleSignOut}>
                 <a
                   href="#"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
