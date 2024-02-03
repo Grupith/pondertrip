@@ -1,7 +1,7 @@
 "use client"
 import React, { ReactNode, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useAuth } from "../FirebaseContext"
+import { useAuth } from "../providers/FirebaseContext"
 
 interface PrivatePageProps {
   children: ReactNode // Define children prop type

@@ -1,9 +1,10 @@
 "use client"
 import React, { useState } from "react"
-import { useAuth } from "../FirebaseContext"
+import { useAuth } from "../providers/FirebaseContext"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import ThemeSwitch from "./ThemeSwitch"
+import { useAlert } from "../providers/AlertContext"
 
 interface SidebarProps {
   isSidebarOpen: boolean
@@ -13,6 +14,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const { signOut, user } = useAuth()
   const router = useRouter()
+  const { showAlert } = useAlert()
 
   return (
     <div className={`bg-gray-200 dark:bg-slate-900`}>
@@ -166,6 +168,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
               <li
                 onClick={() => {
                   signOut()
+                  showAlert("Signed out sucessfully!", "info")
                   router.push("/")
                   console.log("signed out from dashboard")
                 }}

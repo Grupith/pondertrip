@@ -1,5 +1,5 @@
 "use client"
-import { useAuth } from "@/app/FirebaseContext"
+import { useAuth } from "@/app/providers/FirebaseContext"
 import React from "react"
 
 export default function Settings() {

@@ -11,7 +11,7 @@ import {
   createUserWithEmailAndPassword,
   User,
 } from "firebase/auth"
-import { auth, db } from "./Firebase"
+import { auth, db } from "../Firebase"
 import { Timestamp, doc, getDoc, setDoc } from "firebase/firestore"
 import { v4 as uuidv4 } from "uuid"
 

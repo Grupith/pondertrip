@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import React, { useState } from "react"
-import { useAuth } from "../FirebaseContext"
+import { useAuth } from "../providers/FirebaseContext"
 import { useRouter } from "next/navigation"
 
 export default function Register() {

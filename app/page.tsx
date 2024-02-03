@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
-import { useAuth } from "./FirebaseContext"
+import { useAuth } from "./providers/FirebaseContext"
 import ThemeSwitch from "./components/ThemeSwitch"
 
 export default function Home() {

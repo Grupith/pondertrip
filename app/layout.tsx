@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import { Nunito } from "next/font/google"
 import "./globals.css"
-import { AuthProvider } from "./FirebaseContext"
-import Provider from "./ThemeContext"
+import { AuthProvider } from "./providers/FirebaseContext"
+import Provider from "./providers/ThemeContext"
+import { AlertProvider } from "./providers/AlertContext"
+import Alert from "./components/Alert"
 
 const nunito = Nunito({ subsets: ["latin"] })
 
@@ -23,7 +25,12 @@ export default function RootLayout({
       </head>
       <body className={nunito.className}>
         <AuthProvider>
-          <Provider>{children}</Provider>
+          <AlertProvider>
+            <Provider>
+              <Alert />
+              {children}
+            </Provider>
+          </AlertProvider>
         </AuthProvider>
       </body>
     </html>
