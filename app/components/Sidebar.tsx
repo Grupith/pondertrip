@@ -1,11 +1,11 @@
 "use client"
-import React, { useState } from "react"
+import React from "react"
 import { useAuth } from "../providers/FirebaseContext"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import ThemeSwitch from "./ThemeSwitch"
 import { useAlert } from "../providers/AlertContext"
 import { useModal } from "../providers/ModalContext"
+import { useRouter } from "next/navigation"
 
 interface SidebarProps {
   isSidebarOpen: boolean
@@ -14,17 +14,18 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const { signOut, user } = useAuth()
-  const router = useRouter()
   const { showAlert } = useAlert()
   const { openModal, closeModal } = useModal()
+  const router = useRouter()
 
   const handleSignOut = () => {
     openModal(
-      "Confirm Signout",
-      "Are you sure you want to sign out?",
+      "Confirm Logout",
+      <p>Are you sure you want to logout of your account?</p>,
       () => {
-        console.log("opened modal")
+        signOut()
         showAlert("User signed out successfully!", "info")
+        router.push("/")
         closeModal()
       },
       () => {
@@ -202,9 +203,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
                       d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                     />
                   </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">
-                    Sign Out
-                  </span>
+                  <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
                 </a>
               </li>
             </ul>
@@ -213,7 +212,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
             <p className="dark:text-gray-300 text-sm">
               Signed in as{" "}
               <span className="text-blue-500 font-semibold">
-                {user && user.email}
+                {user ? user.email : "Loading..."}
               </span>
             </p>
             <ThemeSwitch />

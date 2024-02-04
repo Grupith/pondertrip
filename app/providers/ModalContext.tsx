@@ -1,16 +1,15 @@
 "use client"
-// ModalContext.tsx
 import React, { createContext, useContext, useState } from "react"
 
 interface ModalContextType {
   isOpen: boolean
   title: string
-  body: string
+  body: React.ReactNode | null
   onConfirm: () => void
   onCancel: () => void
   openModal: (
     title: string,
-    body: string,
+    body: React.ReactNode | null,
     onConfirm: () => void,
     onCancel: () => void
   ) => void
@@ -33,14 +32,14 @@ export const ModalProvider: React.FC<React.PropsWithChildren<{}>> = ({
   const [modalState, setModalState] = useState({
     isOpen: false,
     title: "",
-    body: "",
+    body: null as React.ReactNode,
     onConfirm: () => {},
     onCancel: () => {},
   })
 
   const openModal = (
     title: string,
-    body: string,
+    body: React.ReactNode | null,
     onConfirm: () => void,
     onCancel: () => void
   ) => {
