@@ -37,10 +37,10 @@ const Create: React.FC = () => {
   return (
     <>
       <main>
-        <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden bg-gray-200 dark:bg-slate-900 dark:text-white">
+        <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden bg-white dark:bg-slate-900 dark:text-white">
           {/* Create Trip Form */}
           <form onSubmit={handleSubmit} className="p-4 sm:ml-64">
-            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-slate-900">
+            <div className="p-4  dark:border-slate-900">
               <div className="grid grid-cols-3 gap-4 mb-4">
                 <div className="flex items-center justify-center h-20 w-64 sm:w-fit sm:px-16 rounded-lg bg-slate-50 dark:bg-gray-800 shadow-sm">
                   <p className="text-2xl font-bold text-black dark:text-gray-300 text-center truncate ">

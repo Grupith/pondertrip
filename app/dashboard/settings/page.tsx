@@ -1,102 +1,27 @@
 "use client"
 import { useAuth } from "@/app/providers/FirebaseContext"
 import React from "react"
+import { LuPencil } from "react-icons/lu"
 
 export default function Settings() {
   const { user } = useAuth()
   return (
-    <div>
-      <main>
-        <div className="pt-12 sm:pt-1 min-h-screen overflow-hidden bg-gray-200 dark:bg-slate-900 dark:text-white">
-          {/* Settings View */}
-          <div className="p-2 sm:p-4 sm:ml-64">
-            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-slate-900">
-              <div className="grid grid-cols-3 gap-4 mb-4">
-                {/* Repeat this block as needed */}
-                <div className="flex items-center justify-center h-20 w-64 sm:w-fit sm:px-16 rounded-lg bg-slate-50 dark:bg-gray-800 shadow-sm">
-                  <p className="text-2xl font-bold text-black dark:text-gray-300 text-center">
-                    Settings
-                  </p>
-                </div>
-
-                {/* End of repeatable block */}
-              </div>
-              <div className=" p-4 h-48 mb-4 rounded-lg bg-gray-50 dark:bg-gray-800 shadow-sm border dark:border dark:border-gray-800">
-                <p className="text-md text-gray-800 dark:text-gray-300 mb-1">
-                  Account Email
-                </p>
-                <p className="font-normal text-xl text-gray-800 dark:text-white">
-                  {user && user.email}
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                {/* Repeat this block as needed */}
-                <div className="flex items-center justify-center rounded-lg bg-gray-50 h-28 dark:bg-gray-800 shadow-sm border dark:border-gray-800">
-                  <p className="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg
-                      className="w-3.5 h-3.5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 18"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 1v16M1 9h16"
-                      />
-                    </svg>
-                  </p>
-                </div>
-                {/* End of repeatable block */}
-              </div>
-              <div className="flex items-center justify-center h-48 mb-4 rounded-lg bg-gray-50 dark:bg-gray-800 shadow-sm border dark:border-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {/* Repeat this block as needed */}
-                <div className="flex items-center justify-center rounded-lg bg-gray-50 h-28 dark:bg-gray-800 shadow-sm border dark:border-gray-800">
-                  <p className="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg
-                      className="w-3.5 h-3.5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 18"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 1v16M1 9h16"
-                      />
-                    </svg>
-                  </p>
-                </div>
-                {/* End of repeatable block */}
-              </div>
-            </div>
+    <div className="pt-12 sm:ml-64 min-h-screen overflow-hidden bg-white dark:bg-gray-800 dark:text-white">
+      {/* All settings page content in main */}
+      <main className="mx-2 sm:ml-14">
+        <section className="flex justify-between items-center w-4/5">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
+              {user?.displayName ? user.displayName : "update name"}
+            </h1>
+            <h2 className="text-xl font-medium text-gray-600 dark:text-gray-400">
+              {user?.email}
+            </h2>
           </div>
-        </div>
+          <div className="border p-2 rounded-md cursor-pointer text-gray-700 dark:text-gray-300 dark:border-gray-400 shadow-sm">
+            <LuPencil className="text-xl" />
+          </div>
+        </section>
       </main>
     </div>
   )
